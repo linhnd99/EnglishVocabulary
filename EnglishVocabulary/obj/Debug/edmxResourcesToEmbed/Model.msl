@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EnglishVocabularyModelStoreContainer" CdmEntityContainer="EnglishVocabularyEntities1">
+    <EntitySetMapping Name="En_to_Vi">
+      <EntityTypeMapping TypeName="EnglishVocabularyModel.En_to_Vi">
+        <MappingFragment StoreEntitySet="En_to_Vi">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="en" ColumnName="en" />
+          <ScalarProperty Name="vi" ColumnName="vi" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="EnglishVocabularyModel.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

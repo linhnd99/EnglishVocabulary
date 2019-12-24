@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnglishVocabularyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="En_to_Vi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="en" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="vi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="Int32" />
+    <NavigationProperty Name="Unit1" Relationship="Self.FK_EnToVi_Unit" FromRole="En_to_Vi" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="En_to_Vi" Relationship="Self.FK_EnToVi_Unit" FromRole="Unit" ToRole="En_to_Vi" />
+  </EntityType>
+  <Association Name="FK_EnToVi_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <End Role="En_to_Vi" Type="Self.En_to_Vi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="En_to_Vi">
+        <PropertyRef Name="unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EnglishVocabularyEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="En_to_Vi" EntityType="Self.En_to_Vi" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <AssociationSet Name="FK_EnToVi_Unit" Association="Self.FK_EnToVi_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="En_to_Vi" EntitySet="En_to_Vi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
